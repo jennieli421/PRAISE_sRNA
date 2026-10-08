@@ -1,0 +1,62 @@
+# 默认忽略一切（FASTQ / TSV / BAM / 图 / 中间结果）
+*
+# 允许进入子目录，否则白名单扫不到
+!*/
+
+# 仓库自身
+!.gitignore
+!README.md
+
+# 脚本与笔记
+!*.R
+!*.r
+!*.Rmd
+!*.py
+!*.sh
+!*.md
+!*.yml
+!*.yaml
+!*.toml
+!*.cfg
+!*.ini
+
+# 数据与结果目录（即使里面有 README.md 也不进库）
+rawdata/
+control*/
+praise*/
+plot_mod/
+
+# 常见数据/二进制（双保险）
+*.fastq
+*.fastq.gz
+*.fq
+*.fq.gz
+*.fasta
+*.fa
+*.fa.gz
+*.sam
+*.bam
+*.bai
+*.bed
+*.vcf
+*.mpileup
+*.parquet
+*.tsv
+*.csv
+*.txt
+*.ids
+*.log
+*.pdf
+*.png
+*.jpg
+*.svg
+*.html
+*.rds
+*.RData
+*.Rhistory
+*.Rproj.user/
+.bowtie_result/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.DS_Store
