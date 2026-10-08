@@ -158,7 +158,7 @@ seqkit grep -f "$filter" "$in2" -o "$out2"
 接头若缺了自己的 5′ 端，文档写明默认找不到，例如 APTERmysequence。要这种匹配，需要 -a "ADAPTER;anywhere"。
 
 错误 -a 的逻辑：找到 adapter 后，把 adapter 本身以及 adapter 后面的所有序列全部剪掉。
-```bash
+<!-- ```bash
 # R1继续切
 cd cutadapt-round2
 cutadapt -j 32 \
@@ -177,7 +177,7 @@ cutadapt -j 32 \
   -m 10 \
   -o ${sample}_R1_bothAD_cut5AD_cut5AD.fastq.gz \
   ${sample}_R1_bothAD_cut5AD.fastq.gz > log-R1-bothAD-5AD-5AD.log 2>&1
-```
+``` -->
 
 try 2  正确
 -g 逻辑：找到 adapter 后，删除 adapter 以及 adapter 前面的序列，保留 adapter 后面的序列。

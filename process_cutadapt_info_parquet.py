@@ -79,7 +79,7 @@ def parse_cutadapt_info(input_file):
 if os.path.exists("info_3AD_parsed.parquet"):
     df3 = pd.read_parquet("info_3AD_parsed.parquet")
 else:
-    df3 = parse_cutadapt_info('info_3AD.tsv')
+    df3 = parse_cutadapt_info('info_R1_cut3AD.tsv')
     df3['adapter_name'].unique() # sanity check
 
 # df3.to_parquet("info_3AD_parsed.parquet", compression="zstd", index=False)
@@ -88,7 +88,7 @@ else:
 if os.path.exists("info_5AD_parsed.parquet"):
     df5 = pd.read_parquet("info_5AD_parsed.parquet")
 else:
-    df5 = parse_cutadapt_info('info_5AD.tsv')
+    df5 = parse_cutadapt_info('info_R2_cut5AD.tsv')
     df5['adapter_name'].unique() # sanity check
 
 # df5.to_parquet("info_5AD_parsed.parquet", compression="zstd", index=False) # 保存
