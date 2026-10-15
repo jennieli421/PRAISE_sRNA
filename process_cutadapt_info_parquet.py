@@ -117,29 +117,6 @@ merged_df.to_parquet("info_bothAD_parsed.parquet", compression="zstd", index=Fal
 # ----------- 读取保存的文件 -------------
 df = pd.read_parquet("info_bothAD_parsed.parquet")
 
-# # 按第一列（read_base）排序（稳定排序，保留原有行顺序）
-# df = df.sort_values(by='read_base', kind='stable')
-
-
-# val = df['seq_left_R1'][4]
-# print(f"值: '{val}'")
-# print(f"类型: {type(val)}")
-# print(f"是否为空字符串: {val == ''}")
-# print(f"是否为 None: {val is None}")
-# print(f"是否为 NaN: {pd.isna(val)}")
-
-df[['read_base', 'adapter_name_R1', 'seq_left_R1', 'seq_right_R1']]
-df[['read_base', 'adapter_name_R2', 'seq_left_R2', 'seq_right_R2']]
-
-# view examples of seq start from inner adapter 
-tmp = df[(df['seq_left_R1']=='') & (df['seq_right_R1']!='')]
-tmp[['read_base', 'seq_left_R1', 'seq_right_R1']]
-
-# view examples of seq start from inner adapter 
-tmp = df[(df['seq_left_R2']=='') & (df['seq_right_R2']!='')]
-tmp[['read_base', 'seq_left_R2', 'seq_right_R2']]
-
-
 combination_counts = df.groupby(['adapter_name_R1', 'adapter_name_R2'], dropna=False).size().reset_index(name='count')
 combination_counts
 
@@ -149,6 +126,13 @@ combination_counts
 # 1             3AD            None     57,372
 # 2            None             5AD    738,099
 # 3            None            None   1,311,321
+
+# control_2
+#   adapter_name_R1 adapter_name_R2     count
+# 0             3AD             5AD  13200456
+# 1             3AD            None     75386
+# 2            None             5AD   1319246
+# 3            None            None   1426724
 
 # praise_1
 #   adapter_name_R1 adapter_name_R2    count
@@ -164,7 +148,7 @@ both_mask = (df['adapter_name_R1'] == '3AD') & (df['adapter_name_R2'] == '5AD')
 both_df = df[both_mask].copy()
 other_df = df[~both_mask].copy()
 
-both_df[['read_base', 'seq_left_R2', 'seq_left_R1']]
+# both_df[['read_base', 'seq_left_R2', 'seq_left_R1']]
 
 
 # 对 other_df 进一步细分
